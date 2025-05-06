@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/quizListFragment">
+
+    <fragment
+        android:id="@+id/quizListFragment"
+        android:name="com.example.kotlinquiz.ui.quiz.QuizListFragment"
+        android:label="QuizListFragment"
+        tools:layout="@layout/fragment_quiz_list">
+        <action
+            android:id="@+id/action_quizListFragment_to_quizDetailFragment"
+            app:destination="@id/quizDetailFragment" />
+        <action
+            android:id="@+id/action_quizListFragment_to_createQuizFragment"
+            app:destination="@id/createQuizFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizDetailFragment"
+        android:name="com.example.kotlinquiz.ui.quiz.QuizDetailFragment"
+        android:label="QuizDetailFragment">
+        <argument
+            android:name="quizId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_quizDetailFragment_to_takeQuizFragment"
+            app:destination="@id/takeQuizFragment" />
+        <action
+            android:id="@+id/action_quizDetailFragment_to_editQuizFragment"
+            app:destination="@id/editQuizFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createQuizFragment"
+        android:name="com.example.kotlinquiz.ui.quiz.CreateQuizFragment"
+        android:label="CreateQuizFragment" />
+
+    <fragment
+        android:id="@+id/editQuizFragment"
+        android:name="com.example.kotlinquiz.ui.quiz.EditQuizFragment"
+        android:label="EditQuizFragment">
+        <argument
+            android:name="quizId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/takeQuizFragment"
+        android:name="com.example.kotlinquiz.ui.quiz.TakeQuizFragment"
+        android:label="TakeQuizFragment">
+        <argument
+            android:name="quizId"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>

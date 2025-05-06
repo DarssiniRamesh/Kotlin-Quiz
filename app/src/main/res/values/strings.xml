@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Kotlin Quiz</string>
+    <string name="app_welcome_message">Welcome to Kotlin Quiz App!</string>
+    
+    <!-- Quiz list screen -->
+    <string name="quiz_list_title">Available Quizzes</string>
+    <string name="no_quizzes_available">No quizzes available</string>
+    <string name="add_quiz">Add Quiz</string>
+    
+    <!-- Quiz difficulty levels -->
+    <string name="difficulty_easy">Difficulty: Easy</string>
+    <string name="difficulty_medium">Difficulty: Medium</string>
+    <string name="difficulty_hard">Difficulty: Hard</string>
+    
+    <!-- Quiz status -->
+    <string name="status_completed">Completed</string>
+    <string name="status_incomplete">Incomplete</string>
+    
+    <!-- Quiz time format -->
+    <string name="time_format">Time: %d minutes</string>
+    
+    <!-- Quiz details screen -->
+    <string name="question_count">Questions: %d</string>
+    <string name="take_quiz">Take Quiz</string>
+    <string name="edit_quiz">Edit Quiz</string>
+    <string name="delete_quiz">Delete Quiz</string>
+    
+    <!-- Create/Edit quiz screen -->
+    <string name="create_quiz_title">Create New Quiz</string>
+    <string name="edit_quiz_title">Edit Quiz</string>
+    <string name="quiz_title_hint">Quiz Title</string>
+    <string name="quiz_description_hint">Quiz Description</string>
+    <string name="quiz_difficulty_label">Difficulty Level</string>
+    <string name="quiz_time_label">Time (minutes)</string>
+    <string name="save_quiz">Save Quiz</string>
+    <string name="add_question">Add Question</string>
+    
+    <!-- Take quiz screen -->
+    <string name="quiz_progress">Question %1$d of %2$d</string>
+    <string name="next_question">Next</string>
+    <string name="previous_question">Previous</string>
+    <string name="submit_quiz">Submit</string>
+    <string name="quiz_result">Your Score: %1$d/%2$d</string>
+    
+    <!-- Error messages -->
+    <string name="error_loading_quizzes">Error loading quizzes</string>
+    <string name="error_creating_quiz">Error creating quiz</string>
+    <string name="error_loading_questions">Error loading questions</string>
+</resources>
