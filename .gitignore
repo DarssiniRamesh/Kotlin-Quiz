@@ -61,3 +61,5 @@ vcs.xml
 
 # Gradle wrapper
 gradle/wrapper/gradle-wrapper.jar
+
+logs/

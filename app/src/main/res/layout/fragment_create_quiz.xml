@@ -8,15 +8,16 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
             app:title="@string/create_quiz_title"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="?attr/colorOnPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -37,7 +38,8 @@
                 android:hint="@string/quiz_title_hint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@android:drawable/ic_menu_edit">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_title"
@@ -56,7 +58,8 @@
                 android:hint="@string/quiz_description_hint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_input_layout_title">
+                app:layout_constraintTop_toBottomOf="@id/text_input_layout_title"
+                app:startIconDrawable="@android:drawable/ic_menu_info_details">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_description"
@@ -71,50 +74,51 @@
                 android:id="@+id/text_difficulty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/quiz_difficulty_label"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_input_layout_description" />
 
-            <RadioGroup
+            <com.google.android.material.chip.ChipGroup
                 android:id="@+id/radio_group_difficulty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal"
+                app:singleSelection="true"
+                app:selectionRequired="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_difficulty">
 
-                <RadioButton
+                <com.google.android.material.chip.Chip
                     android:id="@+id/radio_easy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:checked="true"
-                    android:text="Easy" />
+                    android:text="Easy"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" />
 
-                <RadioButton
+                <com.google.android.material.chip.Chip
                     android:id="@+id/radio_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Medium" />
+                    android:text="Medium"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" />
 
-                <RadioButton
+                <com.google.android.material.chip.Chip
                     android:id="@+id/radio_hard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Hard" />
-            </RadioGroup>
+                    android:text="Hard"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" />
+            </com.google.android.material.chip.ChipGroup>
 
             <TextView
                 android:id="@+id/text_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/quiz_time_label"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -139,24 +143,39 @@
                 android:valueFrom="5"
                 android:valueTo="60"
                 android:stepSize="5"
+                app:labelBehavior="floating"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_time" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_save_quiz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="@string/save_quiz"
+                app:icon="@android:drawable/ic_menu_save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/slider_time" />
 
-            <ProgressBar
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_add_question"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/add_question"
+                app:icon="@android:drawable/ic_menu_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_save_quiz" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:indeterminate="true"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -132,4 +132,15 @@ object AppModule {
     fun provideAnswerRepository(answerDao: AnswerDao): AnswerRepository {
         return AnswerRepositoryImpl(answerDao)
     }
+    
+    /**
+     * Provide the UserPreferences instance
+     * @param context The application context
+     * @return A singleton instance of UserPreferences
+     */
+    @Provides
+    @Singleton
+    fun provideUserPreferences(@ApplicationContext context: Context): UserPreferences {
+        return UserPreferences(context)
+    }
 }

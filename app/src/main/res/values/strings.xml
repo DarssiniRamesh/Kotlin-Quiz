@@ -46,4 +46,31 @@
     <string name="error_loading_quizzes">Error loading quizzes</string>
     <string name="error_creating_quiz">Error creating quiz</string>
     <string name="error_loading_questions">Error loading questions</string>
+    <string name="error_creating_question">Error creating question</string>
+    <string name="error_updating_question">Error updating question</string>
+
+    <!-- Question management -->
+    <string name="create_question_title">Create New Question</string>
+    <string name="edit_question_title">Edit Question</string>
+    <string name="question_text_hint">Question Text</string>
+    <string name="option_hint">Option %d</string>
+    <string name="correct_answer_label">Correct Answer</string>
+    <string name="explanation_hint">Explanation (Optional)</string>
+    <string name="add_option">Add Option</string>
+    <string name="remove_option">Remove Option</string>
+    <string name="save_question">Save Question</string>
+    <string name="min_options_required">At least 2 options are required</string>
+    <string name="max_options_reached">Maximum number of options reached</string>
+    
+    <!-- Settings screen -->
+    <string name="settings">Settings</string>
+    <string name="settings_title">User Preferences</string>
+    <string name="theme_settings">Theme Settings</string>
+    <string name="use_dark_theme">Use Dark Theme</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="quiz_settings">Quiz Settings</string>
+    <string name="default_difficulty">Default Difficulty</string>
+    <string name="default_time_limit">Default Time Limit (minutes)</string>
+    <string name="settings_saved">Settings saved</string>
 </resources>

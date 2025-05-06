@@ -64,6 +64,13 @@ class EditQuizFragment : Fragment() {
                 updateQuiz()
             }
         }
+        
+        binding.buttonAddQuestion.setOnClickListener {
+            currentQuiz?.id?.let { quizId ->
+                val action = EditQuizFragmentDirections.actionEditQuizFragmentToCreateQuestionFragment(quizId)
+                findNavController().navigate(action)
+            }
+        }
     }
 
     private fun validateInputs(): Boolean {

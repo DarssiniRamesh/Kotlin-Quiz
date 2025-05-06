@@ -58,6 +58,33 @@ class CreateQuizFragment : Fragment() {
                 saveQuiz()
             }
         }
+        
+        binding.buttonAddQuestion.setOnClickListener {
+            if (validateInputs()) {
+                saveQuizAndAddQuestion()
+            }
+        }
+    }
+    
+    private fun saveQuizAndAddQuestion() {
+        val title = binding.editTextTitle.text.toString().trim()
+        val description = binding.editTextDescription.text.toString().trim()
+        val difficultyLevel = when (binding.radioGroupDifficulty.checkedRadioButtonId) {
+            R.id.radio_easy -> 1
+            R.id.radio_medium -> 2
+            R.id.radio_hard -> 3
+            else -> 1
+        }
+        val timeInMinutes = binding.sliderTime.value.toInt()
+
+        val quiz = Quiz(
+            title = title,
+            description = description,
+            difficultyLevel = difficultyLevel,
+            timeInMinutes = timeInMinutes
+        )
+
+        quizViewModel.saveQuizAndNavigateToAddQuestion(quiz)
     }
 
     private fun validateInputs(): Boolean {
@@ -110,6 +137,11 @@ class CreateQuizFragment : Fragment() {
 
                 if (uiState is QuizViewModel.UiState.Success) {
                     findNavController().navigateUp()
+                } else if (uiState is QuizViewModel.UiState.NavigateToAddQuestion) {
+                    val action = CreateQuizFragmentDirections.actionCreateQuizFragmentToCreateQuestionFragment(
+                        uiState.quizId
+                    )
+                    findNavController().navigate(action)
                 } else if (uiState is QuizViewModel.UiState.Error) {
                     Snackbar.make(
                         binding.root,

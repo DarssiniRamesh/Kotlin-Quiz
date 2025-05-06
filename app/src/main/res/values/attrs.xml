@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom attributes for QuizProgressView -->
+    <declare-styleable name="QuizProgressView">
+        <attr name="progressPercentage" format="float" />
+        <attr name="completedColor" format="color" />
+        <attr name="remainingColor" format="color" />
+        <attr name="progressBarHeight" format="dimension" />
+        <attr name="animationDuration" format="integer" />
+    </declare-styleable>
+
+    <!-- Custom attributes for OptionSelectionView -->
+    <declare-styleable name="OptionSelectionView">
+        <attr name="optionText" format="string" />
+        <attr name="normalBackgroundColor" format="color" />
+        <attr name="selectedBackgroundColor" format="color" />
+        <attr name="correctBackgroundColor" format="color" />
+        <attr name="incorrectBackgroundColor" format="color" />
+        <attr name="optionTextColor" format="color" />
+        <attr name="optionTextSize" format="dimension" />
+        <attr name="optionPadding" format="dimension" />
+        <attr name="cornerRadius" format="dimension" />
+    </declare-styleable>
+</resources>

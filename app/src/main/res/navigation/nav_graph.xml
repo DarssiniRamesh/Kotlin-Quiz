@@ -36,7 +36,11 @@
     <fragment
         android:id="@+id/createQuizFragment"
         android:name="com.example.kotlinquiz.ui.quiz.CreateQuizFragment"
-        android:label="CreateQuizFragment" />
+        android:label="CreateQuizFragment">
+        <action
+            android:id="@+id/action_createQuizFragment_to_createQuestionFragment"
+            app:destination="@id/createQuestionFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/editQuizFragment"
@@ -45,6 +49,12 @@
         <argument
             android:name="quizId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editQuizFragment_to_createQuestionFragment"
+            app:destination="@id/createQuestionFragment" />
+        <action
+            android:id="@+id/action_editQuizFragment_to_editQuestionFragment"
+            app:destination="@id/editQuestionFragment" />
     </fragment>
 
     <fragment
@@ -54,6 +64,63 @@
         <argument
             android:name="quizId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_takeQuizFragment_to_quizResultFragment"
+            app:destination="@id/quizResultFragment"
+            app:popUpTo="@id/quizListFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/quizResultFragment"
+        android:name="com.example.kotlinquiz.ui.result.QuizResultFragment"
+        android:label="Quiz Results"
+        tools:layout="@layout/fragment_quiz_result">
+        <argument
+            android:name="quizAttemptId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_quizResultFragment_to_quizListFragment"
+            app:destination="@id/quizListFragment"
+            app:popUpTo="@id/quizListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createQuestionFragment"
+        android:name="com.example.kotlinquiz.ui.question.CreateQuestionFragment"
+        android:label="CreateQuestionFragment">
+        <argument
+            android:name="quizId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editQuestionFragment"
+        android:name="com.example.kotlinquiz.ui.question.EditQuestionFragment"
+        android:label="EditQuestionFragment">
+        <argument
+            android:name="questionId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.kotlinquiz.ui.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.kotlinquiz.ui.statistics.StatisticsFragment"
+        android:label="StatisticsFragment"
+        tools:layout="@layout/fragment_statistics" />
+
+    <action
+        android:id="@+id/global_action_to_settingsFragment"
+        app:destination="@id/settingsFragment" />
+
+    <action
+        android:id="@+id/global_action_to_statisticsFragment"
+        app:destination="@id/statisticsFragment" />
 
 </navigation>

@@ -14,14 +14,10 @@ import com.example.kotlinquiz.R
 import com.example.kotlinquiz.data.model.Question
 import com.example.kotlinquiz.databinding.FragmentTakeQuizBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-/**
- * Fragment for taking a quiz
- */
 @AndroidEntryPoint
 class TakeQuizFragment : Fragment() {
 
@@ -130,11 +126,13 @@ class TakeQuizFragment : Fragment() {
                 binding.progressBar.isVisible = uiState is QuestionViewModel.UiState.Loading
 
                 if (uiState is QuestionViewModel.UiState.Error) {
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.error_loading_questions),
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Error")
+                        .setMessage(getString(R.string.error_loading_questions))
+                        .setPositiveButton("OK") { _, _ ->
+                            findNavController().navigateUp()
+                        }
+                        .show()
                 }
             }
         }
@@ -219,29 +217,25 @@ class TakeQuizFragment : Fragment() {
     }
 
     private fun submitQuiz() {
-        quizSubmitted = true
-        
-        // Calculate score
-        var correctAnswers = 0
-        for (question in questions) {
-            val userAnswer = userAnswers[question.id]
-            if (userAnswer == question.correctAnswerIndex) {
-                correctAnswers++
-            }
+        viewLifecycleOwner.lifecycleScope.launch {
+            quizSubmitted = true
+            
+            // Submit answers and get quiz attempt ID
+            val quizAttemptId = questionViewModel.submitQuizAnswers(
+                quizId = args.quizId,
+                answers = userAnswers.map { (questionId, selectedOption) ->
+                    QuestionViewModel.AnswerSubmission(
+                        questionId = questionId,
+                        selectedOptionIndex = selectedOption
+                    )
+                }
+            )
+            
+            // Navigate to results screen
+            findNavController().navigate(
+                TakeQuizFragmentDirections.actionTakeQuizFragmentToQuizResultFragment(quizAttemptId)
+            )
         }
-        
-        // Mark quiz as completed
-        quizViewModel.markQuizAsCompleted(args.quizId, true)
-        
-        // Show results dialog
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Quiz Results")
-            .setMessage(getString(R.string.quiz_result, correctAnswers, questions.size))
-            .setPositiveButton("OK") { _, _ ->
-                findNavController().navigateUp()
-            }
-            .setCancelable(false)
-            .show()
     }
 
     private fun confirmExit() {

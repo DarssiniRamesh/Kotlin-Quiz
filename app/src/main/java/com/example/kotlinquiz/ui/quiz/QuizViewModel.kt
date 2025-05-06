@@ -85,6 +85,23 @@ class QuizViewModel @Inject constructor(
     }
     
     /**
+     * Save a quiz and provide the ID for navigating to add question
+     * @param quiz The quiz to save
+     */
+    fun saveQuizAndNavigateToAddQuestion(quiz: Quiz) {
+        viewModelScope.launch {
+            _uiState.value = UiState.Loading
+            try {
+                val quizId = quizRepository.saveQuiz(quiz)
+                _uiState.value = UiState.NavigateToAddQuestion(quizId)
+                loadQuizzes() // Refresh the list
+            } catch (e: Exception) {
+                _uiState.value = UiState.Error(e.message ?: "Unknown error occurred")
+            }
+        }
+    }
+    
+    /**
      * Delete a quiz by its ID
      * @param quizId The unique identifier for the quiz
      */
@@ -127,5 +144,6 @@ class QuizViewModel @Inject constructor(
         object Loading : UiState()
         object Success : UiState()
         data class Error(val message: String) : UiState()
+        data class NavigateToAddQuestion(val quizId: Int) : UiState()
     }
 }
